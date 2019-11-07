@@ -1,0 +1,279 @@
+=== Run information ===
+
+Scheme:       weka.classifiers.trees.J48 -C 0.25 -M 2
+Relation:     employee_abs
+Instances:    677
+Attributes:   16
+              Reason_for_absence
+              Month_of_absence
+              Day_of_the_week
+              Season
+              TravelCost
+              CommuteDistance
+              YearsService
+              WorkLoad
+              Target
+              Education
+              Children
+              Alcohol
+              Smoker
+              NoOfPets
+              BodyWeight
+              Absent
+Test mode:    10-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+J48 pruned tree
+------------------
+
+Reason_for_absence = awol
+|   Alcohol = Y: E (20.24/2.24)
+|   Alcohol = N
+|   |   Day_of_the_week = mon: C (3.33/0.33)
+|   |   Day_of_the_week = tue: A (0.04)
+|   |   Day_of_the_week = wed: E (1.21/0.21)
+|   |   Day_of_the_week = thurs: C (0.0)
+|   |   Day_of_the_week = fri: E (3.08/1.08)
+Reason_for_absence = abnor: E (18.24/2.24)
+Reason_for_absence = blood: E (4.29/0.29)
+Reason_for_absence = circ: E (5.36/0.36)
+Reason_for_absence = digest
+|   Education = 0: E (0.0)
+|   Education = 1: E (21.53/9.53)
+|   Education = 2: A (2.15/1.0)
+|   Education = 3: C (1.0)
+|   Education = 4: E (0.0)
+Reason_for_absence = dentist
+|   Children <= 3
+|   |   Month_of_absence = 1: A (4.02)
+|   |   Month_of_absence = 2
+|   |   |   Children <= 1
+|   |   |   |   Day_of_the_week = mon: B (2.0)
+|   |   |   |   Day_of_the_week = tue: A (0.05)
+|   |   |   |   Day_of_the_week = wed: B (0.0)
+|   |   |   |   Day_of_the_week = thurs: C (2.0)
+|   |   |   |   Day_of_the_week = fri: B (0.0)
+|   |   |   Children > 1: B (5.0)
+|   |   Month_of_absence = 3
+|   |   |   Day_of_the_week = mon: A (2.0)
+|   |   |   Day_of_the_week = tue: B (2.06/0.06)
+|   |   |   Day_of_the_week = wed: A (0.45)
+|   |   |   Day_of_the_week = thurs: A (0.45)
+|   |   |   Day_of_the_week = fri: B (6.0/1.0)
+|   |   Month_of_absence = 4
+|   |   |   WorkLoad <= 0.277741: C (5.0/1.0)
+|   |   |   WorkLoad > 0.277741
+|   |   |   |   Alcohol = Y: A (9.08)
+|   |   |   |   Alcohol = N: B (2.23/1.23)
+|   |   Month_of_absence = 5
+|   |   |   YearsService <= 16: A (9.19/1.0)
+|   |   |   YearsService > 16: C (2.0)
+|   |   Month_of_absence = 6
+|   |   |   Season = spring: B (0.0)
+|   |   |   Season = summer: B (5.08/0.08)
+|   |   |   Season = autumn: B (0.0)
+|   |   |   Season = winter
+|   |   |   |   YearsService <= 14: B (4.13/1.13)
+|   |   |   |   YearsService > 14: C (5.45/0.45)
+|   |   Month_of_absence = 7
+|   |   |   Children <= 0
+|   |   |   |   TravelCost <= 179: C (2.0/1.0)
+|   |   |   |   TravelCost > 179: B (2.0)
+|   |   |   Children > 0: A (2.26)
+|   |   Month_of_absence = 8
+|   |   |   Children <= 0: C (7.0/2.0)
+|   |   |   Children > 0: B (3.05/1.05)
+|   |   Month_of_absence = 9
+|   |   |   Day_of_the_week = mon: A (0.0)
+|   |   |   Day_of_the_week = tue: A (4.96)
+|   |   |   Day_of_the_week = wed: A (0.45)
+|   |   |   Day_of_the_week = thurs: A (0.23)
+|   |   |   Day_of_the_week = fri: C (5.0)
+|   |   Month_of_absence = 10
+|   |   |   CommuteDistance <= 27: A (4.09)
+|   |   |   CommuteDistance > 27
+|   |   |   |   Day_of_the_week = mon: C (0.0)
+|   |   |   |   Day_of_the_week = tue: C (2.0)
+|   |   |   |   Day_of_the_week = wed
+|   |   |   |   |   TravelCost <= 235: C (2.0)
+|   |   |   |   |   TravelCost > 235: B (2.0)
+|   |   |   |   Day_of_the_week = thurs: C (0.0)
+|   |   |   |   Day_of_the_week = fri: C (0.0)
+|   |   Month_of_absence = 11
+|   |   |   NoOfPets <= 0: C (4.91/1.91)
+|   |   |   NoOfPets > 0: A (4.5/1.0)
+|   |   Month_of_absence = 12
+|   |   |   Season = spring: A (17.0/3.0)
+|   |   |   Season = summer: A (0.1)
+|   |   |   Season = autumn: C (2.0)
+|   |   |   Season = winter: A (0.0)
+|   Children > 3: C (21.68/0.68)
+Reason_for_absence = ear
+|   Target <= 95: E (3.25/0.25)
+|   Target > 95: B (2.12/1.12)
+Reason_for_absence = ext: E (0.0)
+Reason_for_absence = endo: E (1.07/0.07)
+Reason_for_absence = eye
+|   Children <= 0: C (4.14/1.14)
+|   Children > 0
+|   |   Month_of_absence = 1: E (0.0)
+|   |   Month_of_absence = 2: B (3.02/1.02)
+|   |   Month_of_absence = 3: E (1.06/0.06)
+|   |   Month_of_absence = 4: A (0.02)
+|   |   Month_of_absence = 5: A (0.03)
+|   |   Month_of_absence = 6: E (2.08/0.08)
+|   |   Month_of_absence = 7: A (0.02)
+|   |   Month_of_absence = 8: E (0.0)
+|   |   Month_of_absence = 9: A (0.11)
+|   |   Month_of_absence = 10: A (0.18)
+|   |   Month_of_absence = 11: A (0.08)
+|   |   Month_of_absence = 12: E (0.0)
+Reason_for_absence = GP
+|   NoOfPets <= 5: E (32.32/4.32)
+|   NoOfPets > 5: C (4.16/0.16)
+Reason_for_absence = GU
+|   Alcohol = Y
+|   |   Day_of_the_week = mon: E (1.02/0.02)
+|   |   Day_of_the_week = tue: E (1.29/0.29)
+|   |   Day_of_the_week = wed: A (0.17)
+|   |   Day_of_the_week = thurs: B (5.12/1.12)
+|   |   Day_of_the_week = fri: E (3.12/0.12)
+|   Alcohol = N: C (5.38/0.38)
+Reason_for_absence = injur: E (22.53/3.53)
+Reason_for_absence = inf: E (13.95/0.95)
+Reason_for_absence = hosp
+|   NoOfPets <= 2
+|   |   BodyWeight <= 95
+|   |   |   Education = 0: B (0.0)
+|   |   |   Education = 1
+|   |   |   |   Month_of_absence = 1
+|   |   |   |   |   Day_of_the_week = mon: B (3.0)
+|   |   |   |   |   Day_of_the_week = tue: C (3.0)
+|   |   |   |   |   Day_of_the_week = wed: E (1.0)
+|   |   |   |   |   Day_of_the_week = thurs: B (2.0)
+|   |   |   |   |   Day_of_the_week = fri: B (0.0)
+|   |   |   |   Month_of_absence = 2
+|   |   |   |   |   TravelCost <= 235: C (3.0/1.0)
+|   |   |   |   |   TravelCost > 235: B (2.0)
+|   |   |   |   Month_of_absence = 3: B (7.71/3.71)
+|   |   |   |   Month_of_absence = 4
+|   |   |   |   |   TravelCost <= 248: A (2.0)
+|   |   |   |   |   TravelCost > 248: C (2.0)
+|   |   |   |   Month_of_absence = 5: B (2.24/0.24)
+|   |   |   |   Month_of_absence = 6: C (5.48/1.48)
+|   |   |   |   Month_of_absence = 7: B (9.0/2.0)
+|   |   |   |   Month_of_absence = 8
+|   |   |   |   |   TravelCost <= 248: B (3.0)
+|   |   |   |   |   TravelCost > 248: A (2.0/1.0)
+|   |   |   |   Month_of_absence = 9
+|   |   |   |   |   TravelCost <= 179: C (9.0/1.0)
+|   |   |   |   |   TravelCost > 179
+|   |   |   |   |   |   Children <= 1: B (4.24/1.24)
+|   |   |   |   |   |   Children > 1: A (4.95/1.0)
+|   |   |   |   Month_of_absence = 10
+|   |   |   |   |   TravelCost <= 248
+|   |   |   |   |   |   Day_of_the_week = mon: E (2.48/0.48)
+|   |   |   |   |   |   Day_of_the_week = tue
+|   |   |   |   |   |   |   WorkLoad <= 0.36193: C (5.0)
+|   |   |   |   |   |   |   WorkLoad > 0.36193: B (3.0/1.0)
+|   |   |   |   |   |   Day_of_the_week = wed: B (4.0/1.0)
+|   |   |   |   |   |   Day_of_the_week = thurs: C (0.0)
+|   |   |   |   |   |   Day_of_the_week = fri: C (2.24/0.24)
+|   |   |   |   |   TravelCost > 248: A (4.48/1.0)
+|   |   |   |   Month_of_absence = 11
+|   |   |   |   |   Alcohol = Y: A (7.48/2.0)
+|   |   |   |   |   Alcohol = N
+|   |   |   |   |   |   TravelCost <= 157: E (2.0)
+|   |   |   |   |   |   TravelCost > 157
+|   |   |   |   |   |   |   WorkLoad <= 0.510502: B (7.0/1.0)
+|   |   |   |   |   |   |   WorkLoad > 0.510502: A (2.0)
+|   |   |   |   Month_of_absence = 12: B (11.0/3.0)
+|   |   |   Education = 2: B (3.95/1.95)
+|   |   |   Education = 3
+|   |   |   |   WorkLoad <= 0.277741: C (5.0/1.0)
+|   |   |   |   WorkLoad > 0.277741: A (5.0/1.0)
+|   |   |   Education = 4: B (0.0)
+|   |   BodyWeight > 95
+|   |   |   Children <= 0: B (3.0)
+|   |   |   Children > 0: A (17.09/6.0)
+|   NoOfPets > 2: A (10.61/1.0)
+Reason_for_absence = malform: E (2.15/0.15)
+Reason_for_absence = mental: E (2.15/0.15)
+Reason_for_absence = muscle
+|   BodyWeight <= 65
+|   |   Season = spring: A (1.21)
+|   |   Season = summer: A (0.05)
+|   |   Season = autumn: C (2.0)
+|   |   Season = winter: B (6.1/2.1)
+|   BodyWeight > 65: E (26.04/9.04)
+Reason_for_absence = neo: E (0.0)
+Reason_for_absence = nerv: E (6.44/1.44)
+Reason_for_absence = perinat
+|   Education = 0: C (0.0)
+|   Education = 1: A (0.33)
+|   Education = 2: A (2.03)
+|   Education = 3: C (3.0)
+|   Education = 4: C (0.0)
+Reason_for_absence = preg: E (1.07/0.07)
+Reason_for_absence = physio
+|   Children <= 0
+|   |   Alcohol = Y
+|   |   |   Target <= 96: C (12.27/1.27)
+|   |   |   Target > 96: B (14.09/2.09)
+|   |   Alcohol = N: B (29.44/2.44)
+|   Children > 0: A (4.28/1.0)
+Reason_for_absence = resp: E (18.24/5.24)
+Reason_for_absence = skin: C (8.58/0.58)
+Reason_for_absence = scan
+|   Smoker = Y
+|   |   Day_of_the_week = mon: A (3.25)
+|   |   Day_of_the_week = tue: E (2.05/0.05)
+|   |   Day_of_the_week = wed: A (0.1)
+|   |   Day_of_the_week = thurs: A (0.0)
+|   |   Day_of_the_week = fri: E (1.05/0.05)
+|   Smoker = N
+|   |   Education = 0: C (0.0)
+|   |   Education = 1: C (20.67/6.67)
+|   |   Education = 2: E (2.2/0.2)
+|   |   Education = 3: B (5.0/1.0)
+|   |   Education = 4: C (0.0)
+Reason_for_absence = status: E (2.15/0.15)
+
+Number of Leaves  : 	157
+
+Size of the tree : 	213
+
+
+Time taken to build model: 0.03 seconds
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances         487               71.935  %
+Incorrectly Classified Instances       190               28.065  %
+Kappa statistic                          0.6239
+Mean absolute error                      0.1917
+Root mean squared error                  0.3386
+Relative absolute error                 51.2907 %
+Root relative squared error             78.331  %
+Total Number of Instances              677     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.704    0.086    0.704      0.704    0.704      0.618    0.861     0.678     A
+                 0.648    0.106    0.652      0.648    0.650      0.543    0.834     0.618     B
+                 0.655    0.083    0.724      0.655    0.688      0.592    0.821     0.652     C
+                 0.843    0.100    0.777      0.843    0.809      0.726    0.892     0.785     E
+Weighted Avg.    0.719    0.094    0.718      0.719    0.718      0.626    0.854     0.689     
+
+=== Confusion Matrix ===
+
+   a   b   c   d   <-- classified as
+ 107  20  11  14 |   a = A
+  23 103  20  13 |   b = B
+  13  24 110  21 |   c = C
+   9  11  11 167 |   d = E
+
+
