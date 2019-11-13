@@ -50,6 +50,23 @@
 \newcommand{\ra}{\rightarrow}
 \newcommand{\lra}{\leftrightarrow}
 
+\newcommand\MyBox[1]{%
+  \fbox{\parbox[c][.7cm][c]{.7cm}{\centering #1}}%
+}
+\newcommand\MyVBox[1]{%
+  \parbox[c][.7cm][c]{1cm}{\centering\bfseries #1}%
+}
+\newcommand\MyHBox[2][\dimexpr.7cm+2\fboxsep\relax]{%
+  \parbox[c][1cm][c]{#1}{\centering\bfseries #2}%
+}
+\usepackage{etoolbox}
+\newcommand\MyTBox[2]{%
+  \MyVBox{#1}
+  \renewcommand*\do[1]{\MyBox{##1}\hspace*{-\fboxrule}}
+  \docsvlist{#2}
+  \par\vspace{-\fboxrule}
+}
+
 \title {CS36110 Machine Learning Assignment}
 
 
@@ -71,7 +88,7 @@ An advantage C4.5 has over Naive Bayes is that Naive Bayes assumes that all the 
 \begin{figure}[h]
     \centering
     $$ P(A \mid B) = \frac{P(B \mid A) \, P(A)}{P(B)} $$
-    \caption{Bayes Theorem}
+    \caption{Bayes Theorem.}
     \label{fig:bayes}
 \end{figure}
 
@@ -79,8 +96,45 @@ An advantage C4.5 has over Naive Bayes is that Naive Bayes assumes that all the 
 \subsection*{Part B}
 Over the entire training data set the C4.5 model obtained a recall measurement of 71.9\% compared to Naive Bayes 55.7\%, recall is a measure of of the ratio of the number of correct positive examples out of those which were classified as positive\cite{MarslandStephen2015Ml:a} a higher recall measure means that more instances are being correctly classified. Precision is the ratio of correct positive examples to the number of actual positive examples\cite{MarslandStephen2015Ml:a}, the precision for C4.5 is 71.8\% and for Naive Bayes it is 58.7\% the higher precision means that the classifier successfully classified more results. 
 
-A useful measure for evaluating classifiers is the Receiver Operator Characteristic Curve this is a plot of false positive rate along the x axis and true positive rate along the y axis, a perfect classifier would be a plot at (0,1) which would mean 100\% true positives and 0\% false positives. Figures \ref{fig:naive bayes roc curves} and \ref{fig:c45 roc curves} show these ROC curves and says their Area Under Curve (AUC), these two figures show you how much better the C4.5 classifier is when compared to Naive Bayes. The AUC represents how good the classifier is at distinguishing between classes, on average the AUC for the C4.5 classes is higher than for Naive Bayes so C4.5 is better at classifying the absences. 
+A measure you could use is the Receiver Operator Characteristic Curve this is a plot of false positive rate along the x axis and true positive rate along the y axis, a perfect classifier would be a plot at (0,1) which would mean 100\% true positives and 0\% false positives. Figures \ref{fig:naive bayes roc curves} and \ref{fig:c45 roc curves} show these ROC curves and their Area Under Curve (AUC). The ROC curve is not useful in this context because it's not meant for multi class problems, in general it is useful for two class problems because the area under the curve represents how well the classifier differentiates between two classes.
 
+Figures \ref{fig:j48 confusion matrix} and \ref{fig:nb confusion matrix} below show the confusion matrices for the C4.5 classifier and the Naive Bayes classifier, from these matrices you can see how well the classifiers perform. You can clearly see how much better the C4.5 classifier is compared to Naive Bayes, if you look at the leading diagonal for C4.5 then you can see how much better it is. If you look at class C for Naive Bayes this inaccuracy really shows because only 49 instances where correctly classified with the majority being incorrectly classified as B this is an accuracy of only 29\%. 
+
+%J48 confusion Matrix
+\begin{figure*}[h]
+    \centering
+    {
+    \offinterlineskip
+    \hspace*{1cm}\MyHBox{A}\MyHBox{B}\MyHBox{C}
+    \MyHBox{D}\par
+    
+    \MyTBox{A}{107, 20, 11, 14}
+    \MyTBox{B}{23, 103, 20, 13}
+    \MyTBox{C}{13,  24, 110,  21}
+    \MyTBox{D}{9,  11,  11, 167}
+    }
+    \caption{The confusion matrix for the C4.5 decision tree classifier.}
+    \label{fig:j48 confusion matrix}
+\end{figure*}
+
+%NB confusion Matrix
+\begin{figure*}[h]
+    \centering
+    {
+    \offinterlineskip
+    \hspace*{1cm}\MyHBox{A}\MyHBox{B}\MyHBox{C}
+    \MyHBox{D}\par
+    
+    \MyTBox{A}{90,  27,  10,  25}
+    \MyTBox{B}{40,  98,  10,  11}
+    \MyTBox{C}{40,  58,  49,  21}
+    \MyTBox{D}{27,  27,   4, 140}
+    }
+    \caption{The confusion matrix for the Naive Bayes classifier.}
+    \label{fig:nb confusion matrix}
+\end{figure*}
+
+The Kappa statistic compares an observed accuracy with an expected accuracy and is useful in evaluating classifiers because it takes into account the random chance this makes it generally less misleading than accuracy. The Kappa statistic for Naive Bayes is 0.4091 and for C4.5 it is 0.6239, There is not a standardized interpretation of this statistic but Landis and Koch\cite{landiskochkappa} consider 0-0.20 as slight, 0.21-0.40 as fair, 0.41-0.60 as moderate, 0.61-0.80 as substantial, and 0.81-1 as almost perfect. Under this Naive Bayes would be classified as moderate and C4.5 as substantial. 
 
 \begin{figure*}[h]
     \centering
@@ -88,7 +142,7 @@ A useful measure for evaluating classifiers is the Receiver Operator Characteris
         \centering
         \includegraphics[width=\textwidth]{bayes_roc/roc_curve_a.jpg}
         \caption[Network2]%
-        {{\small The ROC for class a, the area under ROC is 0.7803}}    
+        {{\small The ROC for class a, the area under ROC is 0.7803.}}    
         \label{fig:bayes roc curve class a}
     \end{subfigure}
     \hfill
@@ -96,7 +150,7 @@ A useful measure for evaluating classifiers is the Receiver Operator Characteris
         \centering 
         \includegraphics[width=\textwidth]{bayes_roc/roc_curve_b.jpg}
         \caption[]%
-        {{\small The ROC for class b, the area under ROC is 0.7723}}    
+        {{\small The ROC for class b, the area under ROC is 0.7723.}}    
         \label{fig:bayes roc curve class b}
     \end{subfigure}
     \vskip\baselineskip
@@ -104,7 +158,7 @@ A useful measure for evaluating classifiers is the Receiver Operator Characteris
         \centering 
         \includegraphics[width=\textwidth]{bayes_roc/roc_curve_c.jpg}
         \caption[]%
-        {{\small The ROC for class c, the area under ROC is 0.6881}}    
+        {{\small The ROC for class c, the area under ROC is 0.6881.}}    
         \label{fig:bayes roc curve class c}
     \end{subfigure}
     \quad
@@ -112,7 +166,7 @@ A useful measure for evaluating classifiers is the Receiver Operator Characteris
         \centering 
         \includegraphics[width=\textwidth]{bayes_roc/roc_curve_e(d).jpg}
         \caption[]%
-        {{\small The ROC for class d, the area under ROC is 0.8715}}    
+        {{\small The ROC for class d, the area under ROC is 0.8715.}}    
         \label{fig:bayes roc curve class d}
     \end{subfigure}
     \caption[ ]
@@ -120,13 +174,13 @@ A useful measure for evaluating classifiers is the Receiver Operator Characteris
     \label{fig:naive bayes roc curves}
 \end{figure*}
 
-\begin{figure*}[ht]
+\begin{figure*}[h]
     \centering
     \begin{subfigure}[b]{0.475\textwidth}
         \centering
         \includegraphics[width=\textwidth]{c45_roc/roc_curve_a.jpg}
         \caption[Network2]%
-        {{\small The ROC for class a, the area under ROC is 0.8613}}    
+        {{\small The ROC for class a, the area under ROC is 0.8613.}}    
         \label{fig:c45 roc curve class a}
     \end{subfigure}
     \hfill
@@ -134,7 +188,7 @@ A useful measure for evaluating classifiers is the Receiver Operator Characteris
         \centering 
         \includegraphics[width=\textwidth]{c45_roc/roc_curve_b.jpg}
         \caption[]%
-        {{\small The ROC for class b, the area under ROC is 0.8341}}    
+        {{\small The ROC for class b, the area under ROC is 0.8341.}}    
         \label{fig:c45 roc curve class b}
     \end{subfigure}
     \vskip\baselineskip
@@ -142,7 +196,7 @@ A useful measure for evaluating classifiers is the Receiver Operator Characteris
         \centering 
         \includegraphics[width=\textwidth]{c45_roc/roc_curve_c.jpg}
         \caption[]%
-        {{\small The ROC for class c, the area under ROC is 0.8208}}    
+        {{\small The ROC for class c, the area under ROC is 0.8208.}}    
         \label{fig:c45 roc curve class c}
     \end{subfigure}
     \quad
@@ -150,7 +204,7 @@ A useful measure for evaluating classifiers is the Receiver Operator Characteris
         \centering 
         \includegraphics[width=\textwidth]{c45_roc/roc_curve_e(d).jpg}
         \caption[]%
-        {{\small The ROC for class d, the area under ROC is 0.892}}    
+        {{\small The ROC for class d, the area under ROC is 0.892.}}    
         \label{fig:c45 roc curve class d}
     \end{subfigure}
     \caption[ ]
@@ -161,14 +215,31 @@ A useful measure for evaluating classifiers is the Receiver Operator Characteris
 
 
 \subsection*{Part C}
-Randomness is a good baseline to test against, a classifier that randomly chooses one of the four absence classes. If you used this over a dataset that had an equal number of instances from each class then you would expect an accuracy of around 25\%. This would be a good baseline because it's very easy to implement and very fast to do. 
+% A baseline classifier is something that provides a prediction in a very simple way, Weka includes a baseline classifier called ZeroR which works by predicting a majority class this achieved 29.25\% accuracy which shows that the classifiers I chose previously have massively outperformed this and they are much better than the baseline.
+
+I think randomness would be a good baseline to test against, a classifier that randomly chooses one of the four absence classes. If you used this over a dataset that had an equal number of instances from each class then you would expect an accuracy of around 25\%. This would be a good baseline because it's very easy to implement and would be very fast to run and test.
 
 \section*{Task 2}
 
 \subsection*{Part A}
-There are a few missing values in the Reason\_for\_absence and the Month\_of\_absence features, there are a few different ways of handling missing values. You could remove the missing values entirely so that data is no longer in the set   
+There are a few different ways of handling missing values. You could remove the missing values entirely so that data is no longer in the set or you could work out the average value for the missing data and use that. This is what Wekas implementation of Naive Bayes does if there are missing values then before it runs it will populate those values with the mean from the dataset, however sometimes this approach isn't very meaningful because for binary features the mean could be somewhere in the middle and then you have to somehow interpret that. You could use probability theory to look at the distributions and then take the missing value from that.
+
+There is a filter in Weka called RepalceMissingValues this filter replaces all missing values  with the modes and means from the training data. When replacing missing values with the mean you can bias your dataset, to avoid this you should consider the mean and mode of all the instances from the training data rather than just from the class. If this approach was followed then you would only see an increase for the Naive Bayes classifier because this approach is what C4.5 does when it encounters missing data.
+
+Another filter is the RemoveWithValues filter this allows you to filter and match certain pieces of data and then remove them, I used this to remove any data instance that had a missing attribute. This approach would only show an increase for Naive Bayes because it handles missing values by removing them.
+
+Overall I would 
+
+\subsection*{Part B}
+There are 46 missing values for the Reason\_for\_absence feature and 3 in the Month\_of\_absence feature, I think it would be appropriate to replace these missing values especially considering how important the Reason\_for\_absence feature is in modelling this data
+
+\subsection*{Part C}
 
 \section*{Task 3}
+
+\subsection*{Part A}
+
+\subsection*{Part B}
 
 
 \bibliographystyle{plain}
