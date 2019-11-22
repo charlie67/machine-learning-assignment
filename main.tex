@@ -79,6 +79,8 @@
 \begin{document}
 \maketitle
 
+I ended up with a word count of 1,656. This is excluding the figure captions, titles and appendix.
+
 \section*{Task 1}
 
 \subsection*{Part A}
@@ -245,17 +247,15 @@ Another filter is the RemoveWithValues filter this allows you to filter and matc
 If I were to replace values I would use the RepalceMissingValues filter.
 
 \subsection*{Part B}
-There are 46 missing values for the Reason\_for\_absence feature and 3 in the Month\_of\_absence feature, across all the instances and attributes there are only 49 missing values this amounts to 0.45\% of the total number of attributes so I don't think that there are enough missing values for it to make a difference if you replace these values or remove them. The missing values are all from the A absent class so this might cause a higher increase in accuracy for that class.
+There are 46 missing values for the Reason\_for\_absence feature and 3 in the Month\_of\_absence feature, across all the instances and attributes there are only 49 missing values this amounts to 0.45\% of the total number of attributes so I don't think that there are enough missing values for it to make a difference if you replace these values. The missing values are all from the A absent class so if you do replace them then it might cause an increase in accuracy for that class.
 
 \subsection*{Part C}
 
-Figures  and  show the confusion matrices for Naive Bayes and J48 after I replaced the missing values in the dataset. The overall correctly classified instances for Naive Bayes was 57.75\% and the Kappa statistic was 0.4369. For J48 the overall accuracy was 74.003\% and the Kappa statistic was 0.652. 
-
-The overall accuracy for both has gone up by about 2\% and the Kappa statistic has gone up by about 0.03 these both show the increase in performance that occurred after the missing values were replaced. The confusion matrices also show this increase in performance.
+After replacing the missing values the overall accuracy for Naive Bayes was 57.75\% and the Kappa statistic was 0.4369. For J48 the overall accuracy was 74.003\% and the Kappa statistic was 0.652. The overall accuracy for both has gone up by about 2\% and the Kappa statistic has gone up by about 0.03 these both show the increase in performance that occurred after the missing values were replaced. The confusion matrices also show this increase in performance.
 
 The J48 confusion matrix, figure \ref{fig:j48 changed confusion matrix}, shows the increase in performance for classes A, B and C The performance of E remains unchanged, this may be because there aren't any missing values that have an absent class of E.
 
-The confusion matrix for Naive Bayes, figure \ref{fig:nb changed confusion matrix}, shows somewhat similar results with class A having the highest increase in accuracy, the value replacement had a negative impact on class B which may indicate that the values that have been replaced are wrong. This also shows class E having a large increase in accuracy of 5\% which is quite a good improvement. 
+The confusion matrix for Naive Bayes, figure \ref{fig:nb changed confusion matrix}, shows somewhat similar results with class A having the highest increase in accuracy, the value replacement had a negative impact on class B which may indicate that the values that have been replaced are wrong.
 
 Table \ref{tab:valuetabletask2} shows the precision recall and F-Measure scores and when comparing these to the classifier before the value replacement you generally see an increase in performance, the low recall in C for Naive Bayes is still present. The performance for classifying B has fallen.
 
@@ -313,7 +313,7 @@ E                                                        & 0.754                
 
 \subsection*{Part A}
 
-This newly trained classify has performance that is relatively similar to the classifiers in Task 1 with J48 performing better than Naive Bayes and Naive Bayes performing particularly poorly on absence class C. The Precision, Recall and F-Measure values are shown in table \ref{tab:valuetabletask3}. This reduced dataset classifier generally performed worse, apart from the precision for Naive Bayes in class A and E, this will mean that the classifier has gotten better at predicting class A. The recall has also dropped so there are trade offs.
+This newly trained classifier has performance that is relatively similar to the classifiers in Task 1 with J48 performing better than Naive Bayes and Naive Bayes performing particularly poorly on absence class C. The Precision, Recall and F-Measure values are shown in table \ref{tab:valuetabletask3}. This reduced dataset classifier generally performed worse, apart from the precision for Naive Bayes in class A and E, this will mean that the classifier has gotten better at predicting class A. The recall has also dropped so this demonstrates the precision recall trade off.
 
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
@@ -335,7 +335,7 @@ The new decision tree is of a smaller size than that in task 1 it has 87 leaves 
 
 \subsection*{Part B}
 
-This classification problem is quite similar to that in task 1 because you are still trying to train a classifier to find out the absent class you are just doing this with a reduced data set.
+I think that this classification problem is quite similar to that in task 1 because you are still trying to train a classifier to find out the absent class you are just doing this with a reduced data set. It is a harder problem because there is less data for the classifiers to work with this is why there is a decrease in accuracy. For a problem like this it does need quite a lot of attributes in the data because there are lots of factors in becoming absent from work and therefore differentiating these absences without all the data is not always possible. 
 
 \bibliographystyle{plain}
 \nocite{*}
