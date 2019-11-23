@@ -81,7 +81,7 @@
 \begin{document}
 \maketitle
 
-I ended up with a word count of 1,656. This is excluding the figure captions, titles and appendix.
+I ended up with a word count of 1,712. This is excluding the figure captions, titles and appendix.
 
 \section*{Task 1}
 
@@ -240,26 +240,28 @@ I talk about Receive Operator Characteristics in appendix \ref{appendix:roc}.
 \subsection*{Part A}
 There are a few different ways of handling missing values. You could remove the missing values entirely so that data is no longer in the set or you could work out the average value for the missing data and use that. 
 
-Replacing the missing values with the mean and mode sometimes isn't very meaningful because for binary features the mean could be somewhere in between the two values and you have to interpret that. You could improve upon this be using probability theory to look at the distributions and then take the missing value from that.
+Replacing the missing values with the mean, mode or median sometimes isn't very meaningful because if the value isn't numeric you may end up with a value that skews the data and introduces a bias and for binary values you could end up with a value that is between the two. You can improve upon this be using probability theory to look at the distributions and then take the missing value from that.
 
-There is a filter in Weka called RepalceMissingValues, this replaces all missing values with the modes and means from the training data. When replacing missing values with the mean you could bias your dataset, to avoid this you should consider the mean and mode of all the instances from the training data rather than just from that class.
+There is a filter in Weka called RepalceMissingValues, this replaces all missing values with the modes and means from the training data. When replacing missing values with the mean you could bias your dataset, to avoid this you should consider the mean and mode of all the instances from the training data rather than just from that class. The missing values are from non-numerical attributes so this probably uses one hot encoding which swaps out the labels for numbers and therefore allows you to perform numerical operations  on them.
 
 Another filter is the RemoveWithValues filter this allows you to filter and match certain pieces of data and then remove them, I used this to remove any data instance that had a missing attribute. 
 
 If I were to replace values I would use the RepalceMissingValues filter.
 
 \subsection*{Part B}
-There are 46 missing values for the Reason\_for\_absence feature and 3 in the Month\_of\_absence feature, across all the instances and attributes there are only 49 missing values this amounts to 0.45\% of the total number of attributes so I don't think that there are enough missing values for it to make a difference if you replace these values. The missing values are all from the A absent class so if you do replace them then it might cause an increase in accuracy for that class.
+There are 46 missing values for the Reason\_for\_absence feature and 3 in the Month\_of\_absence feature. 7\% of the values for Reason\_for\_absence which is a large amount of data so should be replaced. The missing values are all from the A absent class so if you do replace them then it might cause an increase in accuracy for that class.
 
 \subsection*{Part C}
 
-After replacing the missing values the overall accuracy for Naive Bayes was 57.75\% and the Kappa statistic was 0.4369. For J48 the overall accuracy was 74.003\% and the Kappa statistic was 0.652. The overall accuracy for both has gone up by about 2\% and the Kappa statistic has gone up by about 0.03 these both show the increase in performance that occurred after the missing values were replaced. The confusion matrices also show this increase in performance.
+After replacing the missing values the overall accuracy for Naive Bayes was 57.75\% and the Kappa statistic was 0.4369. For J48 the overall accuracy was 74.003\% and the Kappa statistic was 0.652. The overall accuracy for both has gone up by about 2\% and the Kappa statistic has gone up by about 0.03 these both show the increase in performance that occurred after the missing values were replaced. The confusion matrices also show this increase in performance. 
 
 The J48 confusion matrix, figure \ref{fig:j48 changed confusion matrix}, shows the increase in performance for classes A, B and C The performance of E remains unchanged, this may be because there aren't any missing values that have an absent class of E.
 
 The confusion matrix for Naive Bayes, figure \ref{fig:nb changed confusion matrix}, shows somewhat similar results with class A having the highest increase in accuracy, the value replacement had a negative impact on class B which may indicate that the values that have been replaced are wrong.
 
 Table \ref{tab:valuetabletask2} shows the precision recall and F-Measure scores and when comparing these to the classifier before the value replacement you generally see an increase in performance, the low recall in C for Naive Bayes is still present. The performance for classifying B has fallen.
+
+A majority of the missing values have been given the 'hosp' reason for absence label and because all these missing values have the A absence class this has biased the mean towards A and could have caused overfiting. This is why A has had a large increase in accuracy.
 
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
